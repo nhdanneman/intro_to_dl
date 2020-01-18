@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  17 JAN 2020 12:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.2.27)  18 JAN 2020 13:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -690,7 +690,7 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \RaggedRightParindent=\skip71
 \JustifyingParindent=\skip72
 )
-No file introToDlSlides.aux.
+(./introToDlSlides.aux)
 \openout1 = `introToDlSlides.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -707,6 +707,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -786,6 +787,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 7.
 LaTeX Info: Redefining \pageref on input line 7.
 LaTeX Info: Redefining \nameref on input line 7.
+
+(./introToDlSlides.out) (./introToDlSlides.out)
 \@outlinefile=\write5
 \openout5 = `introToDlSlides.out'.
 
@@ -868,7 +871,7 @@ Dictionary: translator-theorem-dictionary, Language: English
 ) ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 7.
 
-No file introToDlSlides.nav.
+(./introToDlSlides.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 9.
@@ -882,17 +885,17 @@ Package pdftex.def Info: dm_logo.png  used on input line 16.
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./dm_lo
 go.png>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+LaTeX Font Info:    Try loading font information for U+msa on input line 27.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+LaTeX Font Info:    Try loading font information for U+msb on input line 27.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 33.
+line 27.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
@@ -900,23 +903,164 @@ thkerncmss.
 )
 File: dm_logo.png Graphic file (type png)
 <use dm_logo.png>
-Package pdftex.def Info: dm_logo.png  used on input line 33.
+Package pdftex.def Info: dm_logo.png  used on input line 27.
 (pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
  [2
 
 ]
 File: dm_logo.png Graphic file (type png)
 <use dm_logo.png>
-Package pdftex.def Info: dm_logo.png  used on input line 44.
+Package pdftex.def Info: dm_logo.png  used on input line 38.
 (pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
  [3
 
 ]
 File: dm_logo.png Graphic file (type png)
 <use dm_logo.png>
-Package pdftex.def Info: dm_logo.png  used on input line 399.
+Package pdftex.def Info: dm_logo.png  used on input line 54.
 (pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
  [4
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 63.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [5
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 70.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [6
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 81.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [7
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 87.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [8
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 96.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [9
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 108.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [10
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 117.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [11
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 130.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [12
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 135.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [13
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 144.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [14
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 156.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [15
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 171.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [16
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 178.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [17
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 188.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+
+[18
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 197.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [19
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 206.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [20
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 212.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [21
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 220.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [22
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 225.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [23
+
+]
+File: dm_logo.png Graphic file (type png)
+<use dm_logo.png>
+Package pdftex.def Info: dm_logo.png  used on input line 605.
+(pdftex.def)             Requested size: 42.6754pt x 24.74805pt.
+ [24
 
 ]
 \tf@nav=\write6
@@ -928,26 +1072,19 @@ Package pdftex.def Info: dm_logo.png  used on input line 399.
 \tf@snm=\write8
 \openout8 = `introToDlSlides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 509.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 509.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 715.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 715.
  (./introToDlSlides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 509.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 509.
-
-
-Package rerunfilecheck Warning: File `introToDlSlides.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `introToDlSlides.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 715.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 715.
+Package rerunfilecheck Info: File `introToDlSlides.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17063 strings out of 492982
- 323912 string characters out of 6132527
- 394130 words of memory out of 5000000
- 20246 multiletter control sequences out of 15000+600000
+ 17156 strings out of 492982
+ 324793 string characters out of 6132527
+ 394261 words of memory out of 5000000
+ 20291 multiletter control sequences out of 15000+600000
  10390 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,14n,55p,801b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -955,10 +1092,10 @@ Here is how much of TeX's memory you used:
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.
 pfb>
-Output written on introToDlSlides.pdf (4 pages, 221851 bytes).
+Output written on introToDlSlides.pdf (24 pages, 255210 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 9 named destinations out of 1000 (max. 500000)
+ 654 PDF objects out of 1000 (max. 8388607)
+ 610 compressed objects within 7 object streams
+ 49 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

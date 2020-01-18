@@ -5,7 +5,7 @@
 \usepackage{ragged2e}
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 \begin{document}
-\title{RuleBreaker: Categorical Correlations as Probabilistic Rules}   
+\title{Intro to Deep Learning with Keras}   
 \author{Nathan Danneman} 
 \date{\today} 
 
@@ -21,14 +21,8 @@
 \frametitle{Acknowledgements}
 Big thanks to:
 \begin{itemize}
-\item BSides Asheville
 \item Data Machines (www.datamachines.io)
-\item Uncle Sam
 \end{itemize}
-\bigskip \bigskip \bigskip
- \textcolor{gray}{This research was developed with funding from the Defense Advanced Research Projects Agency (DARPA).} \\
- \bigskip
- \textcolor{gray}{The views, opinions and/or findings expressed are those of the author and should not be interpreted as representing the official views or policies of the Department of Defense or the U.S. Government.}
 
 }
 
@@ -36,12 +30,224 @@ Big thanks to:
 \frame{
 \frametitle{Outline}
 \begin{enumerate} 
-\item ``Big data'' and analytics for cyber defense \\
-\item RuleBreaker: how it works \\
-\item RuleBreaker: security relevance, use cases \\
-\item Next steps, etc.
+\item Just enough theory/background
+\item Feed forward neural networks
+\item Image classification with convolutional neural networks
+\item Text classification with sequence models
 \end{enumerate}
 }
+
+\frame{
+\frametitle{About This Class}
+Goals:
+\begin{itemize} 
+\item Give you nodding familiarity with theory and practice
+\item Give you ample pointers to dive deeper on your own
+\item Leave you a starter code-base
+\end{itemize}
+\bigskip
+This class lightly assumes:
+\begin{itemize}
+\item you have some familiarity with Python
+\item knowledge of some general data science concepts
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Models Are Function Approximators}
+
+Image here with various functions to approximate a...function
+
+Most estimation is loss minimization.
+}
+
+\frame{
+\frametitle{Neurons}
+Little sigmoid functions...
+Equation
+Image
+}
+
+
+\frame{
+\frametitle{The Feed Forward Neural Network}
+Input is a vector...ex.
+Every element goes into a neuron...\\
+And the outputs of those neurons go to every neuron in the next layer\\
+And then at the end you have a (possibly special) output layer that maps the outputs of the preceding layer to your target values.
+
+Image of layers...
+}
+
+\frame{
+\frametitle{Estimation}
+Stochastic gradient descent\\
+Closed form\\
+}
+
+\frame{
+\frametitle{What is Keras?}
+Light wrapper over TensorFlow (or the other one).\\
+(website)
+APIs allow simplicity and still power.\\
+Great for *using* neural networks, even very complex ones.\\
+Terrible for research *on* neural networks.
+}
+
+\frame{
+\frametitle{Setup}
+pip install keras
+ -- it brings along (stuff you'll likely need)
+(that was easy)
+
+Setup with/for GPU-based estimation:
+How?
+Why?
+
+}
+
+\frame{
+\frametitle{Code Example: Iris Classification}
+
+The iris data:
+table...
+See if we can classify type.
+
+}
+
+\frame{
+\frametitle{Hyperparameters and Overfitting}
+
+Hyperparameters:
+Number of layers
+Number of neurons in each layer
+
+Strategies to avoid overfitting:
+Premature halting
+Dropout
+Regularization
+}
+
+\frame{
+\frametitle{When Would You Use This?}
+Um...
+}
+
+\frame{
+\frametitle{Image Classification with Neural Networks}
+Images are arrays (Height x Width x Depth)
+You could unwrap one, and then use a fully connected feed forward network...
+But:
+Tons of parameters
+Portions of images might not be in sample place
+}
+
+\frame{
+\frametitle{CNNs}
+Idea:
+Estimation: 
+Find some little 3x3xDepth mini-pictures that express the ideas in all your images
+Use the same set of mini-pictures everywhere (parameter sharing)
+Inference: 
+Figure out which mini-picture best approximates the neighborhood of each pixel.
+Capture that information, and send it to a dense layer.
+
+}
+
+\frame{
+\frametitle{CNNs -- a bit further}
+Idea:
+Estimation: 
+Find some little 3x3xDepth mini-pictures that express the ideas in all your images
+Use the same set of mini-pictures everywhere (parameter sharing)
+
+At every OTHER pixel, record the maximum activation in the neighborhood. Drop the rest.
+Then, find ANOTHER set of mini-pictures (now each one represents a 6x6 area)
+... repeat.
+
+Hierarchy! (strained analogy to visual cortex -- useless).
+
+}
+
+\frame{
+\frametitle{CNNs: Visualized}
+pointer to some website
+
+
+}
+
+\frame{
+\frametitle{Are Your Images Special?}
+Chances are, your images share low-level features with others.
+So, get a pre-trained model for everyday objects, cut some layers off, and train your own.
+This is called "fine tuning."
+\medskip
+Unless your images, at a very low level, are really atypical.
+
+}
+
+\frame{
+\frametitle{Let's Code One Together!}
+
+Dog image
+vs
+Cat image
+
+}
+
+\frame{
+\frametitle{Language Modeling as Sequence Modeling}
+Most language is treated as sequences of tokens.
+The tokens are typically lowercase, lemmatized words.
+Though some models include much more (e.g. Bert).
+
+
+}
+
+\frame{
+\frametitle{What's a Sequence Model?}
+Try to predict the next token from the previous x tokens (i.e. Markov Model).
+Try to come up with an embedding that represents a sequence or its type (i.e. hidden Markov Model).
+}
+
+\frame{
+\frametitle{Long Short-term Memory Models (LSTM)}
+how these work.
+
+some details...er...
+
+}
+
+\frame{
+\frametitle{A Fun Example:}
+Who said it: XX or YY.
+}
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+
+
+
+
 
 %
 %\frame{
@@ -392,7 +598,7 @@ Big thanks to:
 
 \frame{
 \frametitle{}
-IF \textcolor{red}{lunch time} THEN \textcolor{red}{not too many questions}?\\
+Questions?\\
 \bigskip
 \bigskip
 nathandanneman [at] datamachines [dot] io
