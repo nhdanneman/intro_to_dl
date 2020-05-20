@@ -1,0 +1,11 @@
+\frametitle{Example Autoencoding Setup}
+\begin{verbatim}
+mod = Sequential()
+# Encoder Layers
+mod.add(Conv2D(18, (4,4), input_shape=(256, 256, 27)))
+mod.add(BatchNormalization())
+mod.add(MaxPooling2D((4,4), padding='same'))
+# Decoder Layers
+mod.add(UpSampling2D((4,4)))
+mod.add(Conv2D(1, (4,4), activation='sigmoid'))
+\end{verbatim}
