@@ -5,7 +5,8 @@
 \usepackage{ragged2e}
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 \begin{document}
-\title{Intro to Deep Learning with Keras}   
+\title{Feed-forward and Convolutional Neural Networks} 
+\subtitle{Introduction and Usecase}
 \author{Nathan Danneman} 
 \date{\today} 
 
@@ -15,14 +16,46 @@
 
 \frame{\titlepage} 
 
+%
+%\begin{frame}
+%\frametitle{Speaker Introduction}
+%\begin{columns}
+%\begin{column}{0.6\textwidth}
+%\small{Dr. Nathan Danneman is the Chief Data Scientist at Data Machines Corp, a small cloud and data science consulting firm. While his doctoral work focused on social science phenomena, he has since worked at the intersection of social sciences and statistics, often working against very large-scale data sets. Over the last few years, he's applied Item Response Theory to big text data; estimated spatio-temporal models of multi-measurement patterns; and cross-categorized enterprise scale network traffic with latent variable models.}
+%\end{column}
+%\begin{column}{0.4\textwidth}  %%<--- here
+%    \begin{center}
+%     \includegraphics[width=0.9\textwidth]{danneman_headshot.jpeg}
+%     \end{center}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
 %\-\hspace{1cm}  indented text
+
+
+\section{Introduction}
 
 \frame{
 \frametitle{Acknowledgements}
 Big thanks to:
 \begin{itemize}
+\item Charlotte Data Science, Machine Learning and AI Meetup
+\item Bojana and Maithili
 \item Data Machines (www.datamachines.io)
+\item DARPA
 \end{itemize}
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\textcolor{gray}{DISTRIBUTION STATEMENT A: Approved for public release.}
+% hyperlink
+% \href{url}[link_text}
 
 }
 
@@ -32,197 +65,584 @@ Big thanks to:
 \begin{enumerate} 
 \item Just enough theory/background
 \item Feed forward neural networks
-\item Image classification with convolutional neural networks
-\item Text classification with sequence models
+\item Convolutional neural networks
+\item Use case: Mask fusion for image manipulation localization
 \end{enumerate}
 }
 
 \frame{
-\frametitle{About This Class}
+\frametitle{About This Talk}
 Goals:
 \begin{itemize} 
-\item Give you nodding familiarity with theory and practice
-\item Give you ample pointers to dive deeper on your own
+\item Give you nodding familiarity and ample pointers
 \item Leave you a starter code-base
 \end{itemize}
 \bigskip
-This class lightly assumes:
+This talk lightly assumes:
 \begin{itemize}
-\item you have some familiarity with Python
-\item knowledge of some general data science concepts
+\item some familiarity with Python
+\item knowledge of general data science concepts
 \end{itemize}
 }
 
 
 \frame{
-\frametitle{Models Are Function Approximators}
+\frametitle{Supervised Models Are Function Approximators}
 
-Image here with various functions to approximate a...function
 
-Most estimation is loss minimization.
+\includegraphics[width=8cm]{func_appox}
+
+
 }
 
-\frame{
-\frametitle{Neurons}
-Little sigmoid functions...
-Equation
-Image
-}
+% What is the plan for teaching FFNNs?
+
+% First, show an image of a simple one, and deal with some nomenclature
+% Then, dive into a single neuron
+% Then, reminder of the point: function approximaiton
+% Learn the weights and biases via SGD and loss
+
+% Show a simple, worked example
+
+% Zoom back out to talk about ALL the hyperparameters, and use that cool dashboard
+%% Structural:
+% Number of hidden layers
+% Number of nodes per layer
+%% Smaller:
+% Regularization
+% Dropout
+% Early termination
+
+% Mention: in large models (millions of params) hyperparameter tuning can be EXPENSIVE
+\section{Feed Forward Neural Networks}
 
 
 \frame{
 \frametitle{The Feed Forward Neural Network}
-Input is a vector...ex.
-Every element goes into a neuron...\\
-And the outputs of those neurons go to every neuron in the next layer\\
-And then at the end you have a (possibly special) output layer that maps the outputs of the preceding layer to your target values.
+\makebox[\textwidth]{\includegraphics[width=\paperwidth]{ffnn_image.jpg}}
+%\includegraphics[width=12cm]{ffnn_image.jpg}
 
-Image of layers...
+% This is a Directed, Acyclic Graph (DAG) that represents a model STRUCTURE
+
+% Input layer: takes in a vector, X, of size four
+% These purple circles are just input data
+% Hidden layer: has learnable parameters that do transformations
+% These beige circles are "neurons", more on that in a minute.
+% Output layer: hopefully matches Y closely
+% This blue circle is also a neuron.
+
+}
+
+
+\frame{
+\frametitle{Neurons}
+Neurons take in the outputs of upstream neurons (or raw data).\\
+\smallskip
+They multiply that by a matrix of \textbf{weights}.\\
+\smallskip
+Add a \textbf{bias} term.\\
+\smallskip
+And pass that entire sum through an \textbf{activation function}.\\
+\bigskip
+For inputs X, weight matrix W, bias b, and activation function f:\\
+\bigskip
+Neuron output $ = f(WX + b)$
+
 }
 
 \frame{
-\frametitle{Estimation}
-Stochastic gradient descent\\
-Closed form\\
+\frametitle{Activation Functions}
+\makebox[\textwidth]{\includegraphics[width=\paperwidth]{sigmoid_relu}}
+%\includegraphics[width=12cm]{ffnn_image.jpg}
+
 }
+
+\frame{
+\frametitle{Understanding a Neuron}
+\makebox[\textwidth]{\includegraphics[width=9cm]{neur}}
+%\includegraphics[width=12cm]{ffnn_image.jpg}
+
+}
+
+
+\frame{
+\frametitle{Learning/Estimation/Function Approximation}
+Remember: The point is (flexible) function approximation.\\
+\bigskip
+In this case, approximation is optimization with respect to a \textbf{loss function}.
+
+\bigskip
+We \textbf{learn} the weights and biases via stochastic gradient descent.\\
+
+%\bigskip
+%
+%All models are wrong...some models are useful.
+%\bigksip
+%A good model approximates x to y in your training data, conditional on the model (in this case I mean the structure...neurons, layers, activations, other params not yet mentioned) you've specified.
+% Say something about what that is.
+% Reminder: Keras does all this for you...but you have to pick some parameters of the learning itself
+% More on that later.
+
+}
+
 
 \frame{
 \frametitle{What is Keras?}
-Light wrapper over TensorFlow (or the other one).\\
-(website)
+Light wrapper over TensorFlow.\\
+\medskip
+https://keras.io\\
+\medskip
 APIs allow simplicity and still power.\\
-Great for *using* neural networks, even very complex ones.\\
-Terrible for research *on* neural networks.
+\medskip
+Great for \textbf{using} neural networks, even very complex ones.\\
+\medskip
+Poor for research  \textbf{on} neural networks.
 }
 
-\frame{
+
+\begin{frame}[fragile]
 \frametitle{Setup}
-pip install keras
- -- it brings along (stuff you'll likely need)
-(that was easy)
+pip install keras\\
+\medskip
+ -- it brings along TensorFlow, numpy, etc\\
+\medskip
+(that was easy)\\
+\medskip
+Setup for GPU usage
+\end{frame}
 
-Setup with/for GPU-based estimation:
-How?
-Why?
+%\begin{frame}[fragile]
+%\frametitle{...}
+%\end{frame}
 
-}
 
 \frame{
 \frametitle{Code Example: Iris Classification}
 
-The iris data:
-table...
-See if we can classify type.
+\begin{center}
 
+\makebox[\textwidth]{
+
+\begin{tabular}{ ccccc } 
+ \hline
+ Sepal Length & Sepal Width & Petal Length & Petal Width & Species \\ 
+ 7.0 & 3.2 & 4.7 & 1.4 & versicolor \\
+ ...&...&...&...&...\\
+ ...&...&...&...&...\\
+ 5.9 & 3.0 & 5.1 & 1.8 & virginica \\
+ \hline
+\end{tabular}
+} % close box
+
+\end{center}
 }
+
+\begin{frame}[fragile]
+\frametitle{A Simple Model}
+\begin{verbatim}
+model = Sequential()
+
+model.add(Dense(3, input_dim=4))
+model.add(Dense(5))
+model.add(Dense(3, activation='sigmoid'))
+
+optimizer_details = SGD(lr=0.01, decay=1e-6)
+model.compile(loss='binary_crossentropy',
+              optimizer=optimizer_details)
+
+model.fit(X_train, Y_train, epochs=20)
+\end{verbatim}
+\end{frame}
+
+
+
 
 \frame{
 \frametitle{Hyperparameters and Overfitting}
 
 Hyperparameters:
-Number of layers
-Number of neurons in each layer
+\begin{itemize}
+ \item Number of layers
+ \item Number of neurons in each layer
+\end{itemize}
+\bigskip
 
 Strategies to avoid overfitting:
-Premature halting
-Dropout
-Regularization
+\begin{itemize}
+\item Premature halting
+\item Dropout
+\item Regularization
+\end{itemize}
+
+\bigskip
+Visit \textcolor{blue}{http://playground.tensorflow.org} to see how hyperparameters affect outcomes in real models of toy data.
 }
 
+
+
 \frame{
-\frametitle{When Would You Use This?}
-Um...
+\frametitle{Pragmatics}
+\begin{itemize}
+\item Start with an overly expressive model
+\item Track measure(s) of interest on test data; terminate upon plateau
+\item Match the problem type, output layer, and loss function
+\end{itemize}
+\begin{center}
+
+\makebox[\textwidth]{
+
+\begin{tabular}{ ccc } 
+ \hline\hline
+ Problem Type & Output Layer & Loss Function  \\ 
+ \hline
+ Regression & 1-unit Linear & Mean Squared Error \\
+ Binary Classification & 1-unit Sigmoid  (softmax) & Binary Crossentropy \\
+ k-Class Classification & k-unit Sigmoid (softmax) & Categorical Crossentropy \\
+
+ \hline
+\end{tabular}
+} % close box
+
+\end{center}
+
 }
+
+
+
+\frame{
+\frametitle{Applicability}
+Q: When might you use a feed-forward neural network for regression or classification?\\
+\bigskip
+\bigskip
+A: Probably never.
+}
+
+
+\section{Image Classification with CNNs}
+
 
 \frame{
 \frametitle{Image Classification with Neural Networks}
-Images are arrays (Height x Width x Depth)
-You could unwrap one, and then use a fully connected feed forward network...
-But:
-Tons of parameters
-Portions of images might not be in sample place
-}
 
-\frame{
-\frametitle{CNNs}
-Idea:
-Estimation: 
-Find some little 3x3xDepth mini-pictures that express the ideas in all your images
-Use the same set of mini-pictures everywhere (parameter sharing)
-Inference: 
-Figure out which mini-picture best approximates the neighborhood of each pixel.
-Capture that information, and send it to a dense layer.
+Where \textbf{do} people get value out of neural nets? \\
 
-}
+\bigskip
 
-\frame{
-\frametitle{CNNs -- a bit further}
-Idea:
-Estimation: 
-Find some little 3x3xDepth mini-pictures that express the ideas in all your images
-Use the same set of mini-pictures everywhere (parameter sharing)
+\bigskip
 
-At every OTHER pixel, record the maximum activation in the neighborhood. Drop the rest.
-Then, find ANOTHER set of mini-pictures (now each one represents a 6x6 area)
-... repeat.
+\pause
 
-Hierarchy! (strained analogy to visual cortex -- useless).
-
-}
-
-\frame{
-\frametitle{CNNs: Visualized}
-pointer to some website
-
-
-}
-
-\frame{
-\frametitle{Are Your Images Special?}
-Chances are, your images share low-level features with others.
-So, get a pre-trained model for everyday objects, cut some layers off, and train your own.
-This is called "fine tuning."
+Images are arrays: Height by Width by 3 (RGB) \\
 \medskip
-Unless your images, at a very low level, are really atypical.
+Why not ``unwrap'' them then use a set of fully connected layers?\\
+
+\bigskip
+\begin{itemize}
+\item Tons of parameters
+\item Pixel location is relative
+\end{itemize}
+}
+
+\frame{
+\frametitle{Convolutional Neural Network (CNN)}
+
+Conv Nets solve those problems by:\\
+
+\smallskip
+
+\begin{itemize}
+\item Parameter sharing
+\item Looking at an image hierarchically
+\end{itemize}
+
+\bigskip
+Idea:
+
+\begin{itemize}
+\item Find a set of micro-pictures that roughly capture the content across patches of all images (convolution)
+\item Then, let a single pixel represent its neighborhood, dropping the rest of the information (pooling)
+\item Repeat, generating a hierarchical view
+\end{itemize}
+
 
 }
 
 \frame{
-\frametitle{Let's Code One Together!}
+\frametitle{Convolutional Filters}
+``Find a set of micro-pictures that roughly capture content in every patch of all images''\\
+\bigskip
+\bigskip
 
-Dog image
-vs
-Cat image
+\makebox[\textwidth]{\includegraphics[width=8cm]{filters}}
+
+}
+
+
+\frame{
+\frametitle{Pooling Operation}
+``Let a single pixel represent how much each filter matches the surrounding patch'' \\
+\bigskip
+\bigskip
+
+\makebox[\textwidth]{\includegraphics[width=8cm]{pooling}}
 
 }
 
 \frame{
-\frametitle{Language Modeling as Sequence Modeling}
-Most language is treated as sequences of tokens.
-The tokens are typically lowercase, lemmatized words.
-Though some models include much more (e.g. Bert).
+\frametitle{Repeat for Hierarchical Image Description}
 
+\makebox[\textwidth]{\includegraphics[width=12cm]{arch}}
+
+\medskip
+
+To learn:
+\begin{itemize}
+\item filters (which are just weights and biases with structure)
+\item weights and biases for hidden/output layers
+\end{itemize}
 
 }
+
+
+\begin{frame}[fragile]
+\frametitle{A Tiny Example: Model Setup}
+\begin{verbatim}
+from keras import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Dense
+from keras.layers import Flatten
+from keras.optimizers import SGD
+
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(5, 5), 
+	input_shape=input_shape))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Flatten())
+model.add(Dense(50, activation='relu'))
+model.add(Dense(num_classes, activation='softmax'))
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{A Tiny Example: Model Fitting}
+\begin{verbatim}
+model.compile(loss=categorical_crossentropy,
+              optimizer=SGD(lr=0.01),
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train,
+          batch_size=batch_size,
+          epochs=epochs,
+          verbose=1)
+\end{verbatim}
+\end{frame}
+
+
 
 \frame{
-\frametitle{What's a Sequence Model?}
-Try to predict the next token from the previous x tokens (i.e. Markov Model).
-Try to come up with an embedding that represents a sequence or its type (i.e. hidden Markov Model).
+\frametitle{Some Pragmatics}
+
+\begin{itemize}
+\item Are your images special? 
+\begin{itemize}
+\item This is unlikely; consider fine-tuning an existing model.
+\end{itemize}
+\item Are your images all the same size?
+\begin{itemize}
+\item Either resize or consider pyramidal layers.
+\end{itemize}
+\item Are your images large? Or many of them?
+\begin{itemize}
+\item You likely need a GPU
+\end{itemize}
+\end{itemize}
+
 }
+
 
 \frame{
-\frametitle{Long Short-term Memory Models (LSTM)}
-how these work.
-
-some details...er...
-
+\frametitle{A Challenging Use Case}
+Program Challenge: Write software that identifies altered images \\
+\medskip
+Researchers write analytics that output scores and masks \\
+\medskip
+My team tries to \textbf{fuse} the masks into a single, optimal mask.
 }
+
+
+
+%\begin{frame}
+%\frametitle{Mask Fusion - Details}
+%\begin{columns}
+%\begin{column}{0.4\textwidth}
+%Challenges:
+%\begin{itemize}
+%\item Missing data
+%\item Chunky masks
+%\item Heterogeneous image sizes
+%\end{itemize}
+%\end{column}
+%\begin{column}{0.6\textwidth}
+%    \begin{center}
+%     \includegraphics[width=.99\textwidth]{cat_mask}
+%     \includegraphics[width=.4\textwidth]{chunky}
+%     \end{center}
+%
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+\begin{frame}
+\frametitle{Example Data}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_real}
+     \end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_1}
+     \end{center}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example Data}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_real}
+     \end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_2}
+     \end{center}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Example Data}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_real}
+     \end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{center}
+     \includegraphics[width=.9\textwidth]{mask_3}
+     \end{center}
+
+\end{column}
+\end{columns}
+\end{frame}
+
 
 \frame{
-\frametitle{A Fun Example:}
-Who said it: XX or YY.
+\frametitle{Mask Fusion: Some Intuition}
+\begin{itemize}
+\item Spatial smoothing
+\item Handle missing data
+\item Lightly parameterized -- modest data
+\item Output is same shape as input image
+\end{itemize}
 }
+
+
+\frame{
+\frametitle{Approach}
+\begin{itemize}
+\item Large filters for spatial smoothing
+\item Not too deep a model (fewer paramters)
+\item Sized all images to 128x128, resize output back to original shape
+\item Missing data placeholder to -1
+\end{itemize}
+
+\bigskip
+Eventually: Added information from an image segmentation model.
+}
+
+
+\begin{frame}[fragile]
+\frametitle{Example Autoencoding Setup}
+\begin{verbatim}
+mod = Sequential()
+# Encoder Layers
+mod.add(Conv2D(18, (4,4), input_shape=(256, 256, 27)))
+mod.add(BatchNormalization())
+mod.add(MaxPooling2D((4,4), padding='same'))
+# Decoder Layers
+mod.add(UpSampling2D((4,4)))
+mod.add(Conv2D(1, (4,4), activation='sigmoid'))
+\end{verbatim}
+\end{frame}
+
+
+\frame{
+\frametitle{Results}
+Short Version: Better than the best single analytic by a large margin.
+}
+
+
+\frame{
+\frametitle{Resources}
+\begin{itemize}
+\item Keras:  https://keras.io
+\item Keras tutorial:  https://elitedatascience.com/keras-tutorial-deep-learning-in-python
+\item Intro to CNNs:  https://towardsdatascience.com/simple-introduction-to-convolutional-neural-networks-cdf8d3077bac
+\item Mathy intro to CNNs: https://arxiv.org/pdf/1511.08458.pdf
+\item Advanced CNN architectures: https://slazebni.cs.illinois.edu/spring17/lec04\_advanced\_cnn.pdf
+\item Hyperparameter tuning:  http://playground.tensorflow.org
+\end{itemize}
+}
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+
+%\frame{
+%\frametitle{}
+%
+%}
+
+
+
+%
+%
+%\frame{
+%\frametitle{Language Modeling as Sequence Modeling}
+%Most language is treated as sequences of tokens.
+%The tokens are typically lowercase, lemmatized words.
+%Though some models include much more (e.g. Bert).
+%
+%
+%}
+%
+%\frame{
+%\frametitle{What's a Sequence Model?}
+%Try to predict the next token from the previous x tokens (i.e. Markov Model).
+%Try to come up with an embedding that represents a sequence or its type (i.e. hidden Markov Model).
+%}
+%
+%\frame{
+%\frametitle{Long Short-term Memory Models (LSTM)}
+%how these work.
+%
+%some details...er...
+%
+%}
+%
+%\frame{
+%\frametitle{A Fun Example:}
+%Who said it: XX or YY.
+%}
 
 %\frame{
 %\frametitle{}
@@ -598,6 +1018,8 @@ Who said it: XX or YY.
 
 \frame{
 \frametitle{}
+Code and talk at: https://github.com/nhdanneman/intro\_to\_dl
+\bigskip
 Questions?\\
 \bigskip
 \bigskip

@@ -23,7 +23,7 @@ raw_iris_data = pd.read_csv('/Users/ndanneman/Documents/datamachines/gits/intro_
 raw_iris_data.shape
 
 
-# Let's look at the raw data:
+# Let's glance at the raw data:
 raw_iris_data.head(5)
 # 4 continuous variables and a species designator
 
@@ -32,6 +32,7 @@ collections.Counter(raw_iris_data["Species"])
 
 # Build X and Y arrays
 X = np.array(raw_iris_data.iloc[:,0:4])
+# Easy eay to turn string categorical into numeric indicator, if you know the strings
 Y = np.array(raw_iris_data.Species.map(dict(versicolor=1, virginica=0)))
 
 ## Make a simple train/test split -- note lack of stratification!
@@ -75,8 +76,15 @@ model.summary()
 
 # We now need to specify some options for how the stochastic gradient descent will proceed
 # More details on this at:
-# TODO: reference abvoe
-optimizer_details = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+# TODO: reference above
+optimizer_details = SGD(lr=0.01, decay=1e-6)
+# lr is the *learning rate* or how much to update the model at each step
+# decay is the extent to dampen the learning rate each time
+# idea is that as you get closer to the minimum of the function, you move more slowly
+
+
+# There are other, fancier optimizers that do things like:
+#  Intelligently estimate how much to update each parameter
 
 # Now, we can compile our model by specifying a loss function, and passing our optimizer information
 model.compile(loss='binary_crossentropy',
@@ -84,11 +92,26 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 # To fit our model, we simply pass in the X and Y data, and tell it how many epochs to run
-model.fit(X_train, Y_train,
-          epochs=20)
+# Quick aside first
+#  Mini-batch: a set of examples to pass to the update algo
+#  Epoch: every sample in _train_ seen by the update algo once
+
+model.fit(X_train, Y_train, epochs=20)
+
+# TODO: figure out where to link output shape, loss function, and problem class (here or slides or both?)
+
+# So, is our model GOOD?
+# Usual classification metrics apply
+
+predicted_probabilities = model.predict_proba(X_test)
+from sklearn.metrics import roc_auc_score
+roc_auc_score(Y_train, predicted_probabilities)
+
+# So, is our model good? In what sense?
+# If our AUC was 0.98, would we be done?
+
+# Nope. Let's talk about hyperparameters.
 
 
-
-
-# re: overfitting!
+# re: overfitting, underfitting, regularization
 # http://playground.tensorflow.org/
